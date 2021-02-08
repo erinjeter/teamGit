@@ -1,8 +1,7 @@
 import {useState} from 'react';
 
-const Location = (props) => {
+const Location = () => {
   const [pos, setPos] = useState({lat: "", long: ""});
-  console.log(props);
   const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getCoords)
@@ -19,9 +18,9 @@ const Location = (props) => {
     }
 
     return (
-      <div>
-          <button onClick={getLocation}>Click me</button>
-          <p value={props=pos.lat}>lat: {pos.lat}</p>
+        <div>
+          <button onClick={getLocation} latitude={pos.lat} longitude={pos.long}>Click me</button>
+          <p value={pos.lat}>lat: {pos.lat}</p>
           <p value={pos.long}>long {pos.long}</p>
         </div>
     );

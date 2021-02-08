@@ -4,16 +4,11 @@ import RestaurantName from './RestaurantName';
 import Location from '../Geolocated';
 
 
-const Restaurant = (props) => {
+const Restaurant = () => {
     const api_key = '5b30698a385bde59533ab80a968bb28c';
-    console.log(props);
-
-    // const latitude = props.lat;
-    // console.log(latitude);
-
-    const lat = '39.6865814';
-    const long = '-86.11133';
-    const ZomatoUrl = `https://developers.zomato.com/api/v2.1/geocode?lat=${lat}&lon=${long}`;
+    const latitude = '39.6865814';
+    const longitude = '-86.11133';
+    const ZomatoUrl = `https://developers.zomato.com/api/v2.1/geocode?lat=${latitude}&lon=${longitude}`;
     const [restaurant, setRestaurant] = useState([]);
 
     const restaurantData = async () => {
