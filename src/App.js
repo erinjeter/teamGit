@@ -1,32 +1,20 @@
-// adding css to jsx is that easy
-import { geolocated } from "react-geolocated";
-import "./App.css"; // This pattern is preferred where css for this component has a matching .css filename
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 
-// A component import
 import Nasa from "./components/NASA/Nasa";
 
-const App = () => {
-  const [pos, setPos] = useState({ lat: "", long: "" });
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getCoords);
-    } else {
-      alert("GeoLocation not enabled");
-    }
-  };
-  const getCoords = (pos) => {
-    console.log(pos);
-    setPos({
-      lat: pos.coords.latitude,
-      long: pos.coords.longitude,
-    });
-  };
+import "./App.css";
+
+// A component import
+
+function App() {
   return (
-    <div>
-      <button onClick={getLocation}>Click me</button>
-      <p>lat: {pos.lat}</p>
-      <p>long {pos.long}</p>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Route component={Nasa} path="/" exact />
+      </div>
+    </BrowserRouter>
   );
-};
+}
+
 export default App;
