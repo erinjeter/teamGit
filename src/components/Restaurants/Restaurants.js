@@ -32,7 +32,9 @@ const Restaurant = ({pos}) => {
 
     return (
         <div>
-            <h1>Restaurants Near Me</h1>
+            <br/>
+            <br/>
+            <h1>RESTAURANTS API</h1>
             {restaurant.map(name => <RestaurantName name={name.restaurant.name} id={name.restaurant.id}/>)}
         </div>
     );

@@ -4,11 +4,11 @@ var style = {
     backgroundColor: "lightgrey",
     borderTop: "1px solid #E7E7E7",
     textAlign: "center",
-    padding: "20px",
+    padding: "10px",
     position: "relative",
     left: "0",
     top: "0",
-    height: "60px",
+    height: "50px",
     width: "100%",
 };
 // Function name matches file name

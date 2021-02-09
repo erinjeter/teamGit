@@ -21,7 +21,8 @@ const Weather = ({match}) => {
     }, [] );
     return (
         <div>
-            <h1>Indianapolis Area Weather</h1>
+            <br/>
+            <h1>WEATHER API</h1>
             <div>
                 <button onClick= {() => setToggle(!toggle)}>SUBMIT</button>
                 <p>{toggle ? weather : celcius}</p>
