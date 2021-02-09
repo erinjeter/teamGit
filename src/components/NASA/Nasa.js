@@ -1,56 +1,66 @@
-import React, { Component } from 'react';
-import './Nasa.css';
+import React from 'react';
+import { useEffect, useState } from "react";
+// import "./NASA.css";
+let long = "86.1581";
+let lat = "39.7684";
 
-export default class NASA extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            lat: null,
-            long: null,
-            NASAurl: 'https://api.nasa.gov/planetary/earth/assets',
-            key: '6X75nJteHGPQZh0ZZ7EXhuygiSeH92RTL6rKfYbJ',
-            img: ''
-        }
-    }
+let key = "6X75nJteHGPQZh0ZZ7EXhuygiSeH92RTL6rKfYbJ";
+let base_url = "https://api.nasa.gov/planetary/earth/assets"
 
-    componentWillMount() {
-        console.log("NASA API is about to mount.");
-    }
+const Nasa = () => {
+  const url = `${base_url}?lon=${long}&lat=${lat}&date=2018-02-01&&dim=0.15&api_key=${key}`;
+  const [data, setData] = useState();
 
-    componentDidMount = (props) => {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition((position) => {
-            this.setState({
-                long: (position.coords.longitude),
-                lat: (position.coords.latitude)
-            })
+  const initData = async () => {
+    const response = await fetch(url);
+    const image = await response.json();
 
-            console.log("Latitude is :", position.coords.latitude);
-            console.log("Longitude is :", position.coords.longitude);
-            console.log("NASA component sucessfully mounted.");
 
-            fetch(`${this.state.NASAurl}?lon=${this.state.long}&lat=${this.state.lat}&dim=0.05&api_key=${this.state.key}`)
-            .then(res => res.json())
-            .then(json => {
-                console.log(json);
-                this.setState({
-                    img: json.url
-                })
-                console.log(this.state.img);
-            })
-          })
-        }
-      }
-    
-    render(){
-        return(
-            <div id='nasaDiv'>
-                <h2 id='nasah2'>Where in the world are you? Let's take a look from above:</h2>
-                <br />
-                <img id='nasaApiReturn' src={this.state.img} alt='NASA satellite image'/>
-                <br />
-                <hr />
-            </div>
-        )
-    }
-}
+    console.log(image);
+
+    setData(image.url);
+  };
+
+  useEffect(() => {
+    initData();
+  }, []);
+
+  return (
+  <div>
+      <img src={data} alt="NASA satellite of your location"/>
+  </div>);
+};
+
+export default Nasa;
+
+
+//Version2
+
+// export default function NasaPhoto() {
+//     const [photoData, setPhotoData] = useState(null);
+
+//     useEffect(() => {
+//         fetchPhoto();
+
+//         async function fetchPhoto() {
+//             const res = await fetch(
+//                 `${base_url}?lon=${long}&lat=${lat}&date=2018-02-01&&dim=0.15&api_key=${key}`
+//             );
+//             const data = await res.json();
+//             setPhotoData(data);
+//         }
+//     }, []);
+
+//     if (!photoData) return <div />;
+
+//     return (
+//         <div>
+//             <img src={photoData.url} alt={photoData.title}/>
+//         </div>
+//     )
+// }
+
+
+
+
+
