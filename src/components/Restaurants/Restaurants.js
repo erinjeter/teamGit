@@ -1,44 +1,38 @@
-import React from 'react';
-import {useEffect, useState} from 'react'; //{useEffect, useState}
-import RestaurantName from './RestaurantName';
+import React from "react";
+import { useEffect, useState } from "react"; //{useEffect, useState}
+import RestaurantName from "./RestaurantName";
+import "./Restaurants.css";
 // import Location from '../Geolocated';
 
+const Restaurant = ({ pos }) => {
+  const api_key = "5b30698a385bde59533ab80a968bb28c";
+  const [restaurant, setRestaurant] = useState([]);
 
-const Restaurant = ({pos}) => {
-    const api_key = '5b30698a385bde59533ab80a968bb28c';
-    const [restaurant, setRestaurant] = useState([]);
+  const restaurantData = async () => {
+    let url = `https://developers.zomato.com/api/v2.1/geocode?lat=${pos.lat}&lon=${pos.long}`;
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "user-key": api_key,
+        Accept: "application/json",
+      },
+    });
+    const restaurants = await response.json();
+    const restaurantInfo = restaurants.nearby_restaurants;
+    setRestaurant(restaurantInfo);
+    // console.log(restaurantInfo);
+  };
 
-    const restaurantData = async () => {
-        let url = `https://developers.zomato.com/api/v2.1/geocode?lat=${pos.lat}&lon=${pos.long}`;
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'user-key': api_key,
-                'Accept': 'application/json'
+  useEffect(() => {
+    restaurantData();
+  }, [pos.lat, pos.long]);
 
-            }
-        });
-        const restaurants = await response.json();
-        const restaurantInfo = restaurants.nearby_restaurants;
-        setRestaurant(restaurantInfo);
-        // console.log(restaurantInfo);
-
-    }
-
-    useEffect(() => {
-        restaurantData();
-    }, [pos.lat, pos.long]);
-
-
-    return (
-        <div>
-            <br/>
-            <br/>
-            <h1>RESTAURANTS API</h1>
-            {restaurant.map(name => <RestaurantName name={name.restaurant.name} id={name.restaurant.id}/>)}
-        </div>
-    );
+  return (
+    <div className="restaurants">
+        <h4>Want to check out some local eats? Try these!</h4>
+        {restaurant.map(name => <RestaurantName name={name.restaurant.name} id={name.restaurant.id}/>)}
+    </div>
+);
 };
 
 export default Restaurant;
-

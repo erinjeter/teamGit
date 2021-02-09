@@ -1,12 +1,28 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body {
+  background-color: cadetblue;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
 }
 
-body{
-    background-color: cadetblue;
-    font-family: sans-serif;
-    color: white; 
+button {
+  margin-bottom: 2em;
+  height: 30px;
+  width: 100px;
+  background-color: lightpink;
+  border: none;
+  color: grey;
 }
 
+p {
+  color: black;
+}
+
+.weather {
+  border-right: 5px solid black;
+  border-bottom: 5px solid black;
+  border-left: 5px solid black;
+}
