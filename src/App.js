@@ -1,31 +1,40 @@
-// adding css to jsx is that easy
-import { geolocated } from "react-geolocated";
-import "./App.css"; // This pattern is preferred where css for this component has a matching .css filename
+import "./App.css"; 
+import {useEffect, useState} from 'react';
 
-// A component import
-import Nasa from "./components/NASA/Nasa";
+import Navbar from './components/Navbar';
+import Restaurant from './components/Restaurants/Restaurants';
+import Footer from './components/Footer';
+
+
 
 const App = () => {
-  const [pos, setPos] = useState({ lat: "", long: "" });
+
+  const [pos, setPos] = useState({lat: 0, long: 0});
   const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getCoords);
-    } else {
-      alert("GeoLocation not enabled");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(getCoords)
+      } else {
+        alert('GeoLocation not enabled');
+      }
     }
-  };
-  const getCoords = (pos) => {
-    console.log(pos);
-    setPos({
-      lat: pos.coords.latitude,
-      long: pos.coords.longitude,
-    });
-  };
+  const getCoords = (position) => {
+      console.log(position)
+      setPos({
+        lat: position.coords.latitude,
+        long: position.coords.longitude
+      })
+    }
+
+    useEffect(() => {
+      getLocation();
+    }, [])
+
   return (
     <div>
-      <button onClick={getLocation}>Click me</button>
-      <p>lat: {pos.lat}</p>
-      <p>long {pos.long}</p>
+      <Navbar />
+      <Restaurant pos={pos}/>
+      <Footer />
+
     </div>
   );
 };
