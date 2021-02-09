@@ -4,6 +4,7 @@ import {useEffect, useState} from 'react';
 import Navbar from './components/Navbar';
 import Restaurant from './components/Restaurants/Restaurants';
 import Footer from './components/Footer';
+import Weather from './components/Weather/Weather';
 
 
 
@@ -33,6 +34,7 @@ const App = () => {
     <div>
       <Navbar />
       <Restaurant pos={pos}/>
+      <Weather />
       <Footer />
 
     </div>
