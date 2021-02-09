@@ -1,9 +1,13 @@
-import React from "react";
-import { geolocated } from "react-geolocated";
+import {useState} from 'react';
 
 const Location = () => {
+
   const [pos, setPos] = useState({lat: "", long: ""})
   const  getLocation = () => {
+
+  const [pos, setPos] = useState({lat: "", long: ""});
+  const getLocation = () => {
+
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getCoords)
       } else {
@@ -17,6 +21,7 @@ const Location = () => {
         long: pos.coords.longitude
       })
     }
+
   return (
       <div>
       <button onClick={getLocation}>Click me</button>
@@ -26,3 +31,19 @@ const Location = () => {
   );
 }
 export default Location;
+
+    return (
+        <div>
+          <button onClick={getLocation} latitude={pos.lat} longitude={pos.long}>Click me</button>
+          <p value={pos.lat}>lat: {pos.lat}</p>
+          <p value={pos.long}>long {pos.long}</p>
+        </div>
+    );
+};
+
+export default Location;
+
+Location.defaultProps = {
+  lat: '39.6865814',
+  long: '-86.11133'
+}
