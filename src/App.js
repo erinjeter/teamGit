@@ -33,6 +33,8 @@ const App = () => {
       <Restaurant pos={pos}/>
       <Weather />
       <Nasa />
+      <br />
+      <br />
       <Footer />
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import {useEffect, useState} from 'react'; //{useEffect, useState}
 import RestaurantName from './RestaurantName';
-// import Location from '../Geolocated';
+import './Restaurants.css';
 
 
 const Restaurant = ({pos}) => {
@@ -21,7 +21,7 @@ const Restaurant = ({pos}) => {
         const restaurants = await response.json();
         const restaurantInfo = restaurants.nearby_restaurants;
         setRestaurant(restaurantInfo);
-        // console.log(restaurantInfo);
+        console.log(restaurantInfo);
 
     }
 
@@ -31,10 +31,8 @@ const Restaurant = ({pos}) => {
 
 
     return (
-        <div>
-            <br/>
-            <br/>
-            <h1>RESTAURANTS API</h1>
+        <div className="restaurants">
+            <h4>RESTAURANTS API</h4>
             {restaurant.map(name => <RestaurantName name={name.restaurant.name} id={name.restaurant.id}/>)}
         </div>
     );

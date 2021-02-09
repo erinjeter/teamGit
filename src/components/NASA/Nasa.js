@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 import ReactPlayer from 'react-player/youtube';
-// import "./NASA.css";
+import "./Nasa.css";
 let long = "86.1581";
 let lat = "39.7684";
 
@@ -29,41 +29,10 @@ const Nasa = () => {
   return (
   <div>
       <br/>
-      <h1>NASA API</h1>
-      <ReactPlayer url={data} alt="NASA satellite of your location"/>
-  </div>);
+      <h4>While you're here, care to learn about space?</h4>
+      <ReactPlayer url={data} alt="NASA satellite of your location" style={{width: "80%"}}/>
+  </div>
+  );
 };
 
 export default Nasa;
-
-
-//Version2
-
-// export default function NasaPhoto() {
-//     const [photoData, setPhotoData] = useState(null);
-
-//     useEffect(() => {
-//         fetchPhoto();
-
-//         async function fetchPhoto() {
-//             const res = await fetch(
-//                 `${base_url}?lon=${long}&lat=${lat}&date=2018-02-01&&dim=0.15&api_key=${key}`
-//             );
-//             const data = await res.json();
-//             setPhotoData(data);
-//         }
-//     }, []);
-
-//     if (!photoData) return <div />;
-
-//     return (
-//         <div>
-//             <img src={photoData.url} alt={photoData.title}/>
-//         </div>
-//     )
-// }
-
-
-
-
-

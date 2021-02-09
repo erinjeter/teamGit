@@ -17,7 +17,7 @@ const Navbar = () => {
     return (
         <div style={style}>
             <nav>
-                <h1>Team APIs</h1>
+                <h1>Welcome to Earth</h1>
             </nav>
         </div>
     )
