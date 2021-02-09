@@ -27,10 +27,13 @@ const Nasa = () => {
   }, []);
 
   return (
-  <div>
+  <div className="space">
       <br/>
       <h4>While you're here, care to learn about space?</h4>
-      <ReactPlayer url={data} alt="NASA satellite of your location" style={{width: "80%"}}/>
+      <ReactPlayer url={data} alt="NASA satellite of your location" width={2000} height={500}/>
+      <br />
+      <br />
+      <br />
   </div>
   );
 };
