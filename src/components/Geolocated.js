@@ -1,8 +1,13 @@
 import {useState} from 'react';
 
 const Location = () => {
+
+  const [pos, setPos] = useState({lat: "", long: ""})
+  const  getLocation = () => {
+
   const [pos, setPos] = useState({lat: "", long: ""});
   const getLocation = () => {
+
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(getCoords)
       } else {
@@ -16,6 +21,16 @@ const Location = () => {
         long: pos.coords.longitude
       })
     }
+
+  return (
+      <div>
+      <button onClick={getLocation}>Click me</button>
+      <p>lat: {pos.lat}</p>
+      <p>long {pos.long}</p>
+      </div>
+  );
+}
+export default Location;
 
     return (
         <div>

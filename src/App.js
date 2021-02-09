@@ -1,13 +1,23 @@
+
+
+// A component import
+=======
 import "./App.css"; 
 import {useEffect, useState} from 'react';
 
 import Navbar from './components/Navbar';
 import Restaurant from './components/Restaurants/Restaurants';
-import Footer from './components/Footer';
+import Footer from './components/Footer";
 
+import Weather from "./components/Weather/Weather";
 
 
 const App = () => {
+
+  return (
+    <div className="App">
+      <Weather />
+
 
   const [pos, setPos] = useState({lat: 0, long: 0});
   const getLocation = () => {
@@ -37,5 +47,5 @@ const App = () => {
 
     </div>
   );
-};
+}
 export default App;
